@@ -95,10 +95,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5rem 10rem;
+  padding: 4rem 10rem;
   margin-top: 5rem;
   max-width: 1400px;
   margin: 0 auto;
+}
+
+#projects {
+  padding: 2rem 10rem;
 }
 
 #hero h1 {
