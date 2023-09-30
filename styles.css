@@ -9,7 +9,7 @@
   padding: 0;
   box-sizing: border-box;
   transition: all 0.5s ease;
-  color: black;
+  color: var(--black);
 }
 html {
   scroll-behavior: smooth;
@@ -26,7 +26,7 @@ html {
 body {
   font-family: "Open Sans", sans-serif;
   background-color: var(--white);
-  font-size: 62.5%; /* 10px as base size for easy rem calculation */
+  font-size: 62.5%;
 }
 
 #navbar {
@@ -104,14 +104,14 @@ body {
 #hero h1 {
   display: inline-block;
   position: relative;
-  min-height: 1.25em; /* Adjust as needed */
+  min-height: 1.25em;
 }
 
 #hero h1::after {
   content: "|";
   position: absolute;
   left: 100%;
-  margin-left: 10x; /* 15px in front of the last typed letter */
+  margin-left: 10x; /* Blink cursor position */
   animation: blink 1s infinite;
 }
 
@@ -301,7 +301,7 @@ body {
   color: var(--black);
 }
 
-/* ... MOBILE ... */
+/* ... BREAKPOINTS ... */
 
 @media (max-width: 1200px) {
   #navbar {
@@ -345,7 +345,7 @@ body {
   }
 
   .text-section h1 {
-    font-size: 2rem; /* Adjusted font size for mobile view */
+    font-size: 2rem;
   }
 
   h1 {
@@ -353,7 +353,7 @@ body {
   }
 
   .text-section p {
-    font-size: 1rem; /* Adjusted font size for mobile view */
+    font-size: 1rem;
     margin-bottom: 1rem;
   }
 
@@ -432,10 +432,8 @@ body {
   }
 }
 
-/* ... existing CSS ... */
-
 #footer {
-  background-color: #ecf0f1; /* Same as timeline background color */
+  background-color: var(--grey);
   padding: 20px 0;
 }
 
@@ -463,6 +461,11 @@ body {
 }
 
 @media (max-width: 768px) {
+  .image-section img {
+    max-width: 400px;
+    width: 100%;
+  }
+
   .footer-content {
     flex-direction: column;
     text-align: center;
