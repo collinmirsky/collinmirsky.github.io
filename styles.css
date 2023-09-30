@@ -41,6 +41,16 @@ body {
   z-index: 1000;
 }
 
+#navbar.scrolled {
+  background-color: rgba(0, 0, 0, 0.7); /* black with 70% opacity */
+  color: var(--white);
+}
+
+#navbar.scrolled #logo,
+#navbar.scrolled #navList li a {
+  color: var(--white);
+}
+
 #logo {
   font-size: 1.5rem;
   margin-left: 2rem;
@@ -79,6 +89,10 @@ body {
   left: 50%;
   background-color: var(--black);
   transition: all 0.5s ease;
+}
+
+.scrolled #navList li a::before {
+  background-color: var(--white);
 }
 
 #navList li a:hover::before {
@@ -208,7 +222,7 @@ body {
   width: 16px;
   height: 16px;
   top: calc(50% - 8px);
-  right: -8px;
+  right: -10px;
   background: var(--white);
   border: 2px solid var(--black);
   border-radius: 16px;
@@ -216,7 +230,7 @@ body {
 }
 
 .container.right::after {
-  left: -8px;
+  left: -10px;
 }
 
 .container::before {
@@ -339,11 +353,7 @@ body {
 /* MID */
 @media (max-width: 1200px) {
   #navbar {
-    background-color: rgba(0, 0, 0, 0.7); /* black with 70% opacity */
-  }
-
-  #navbar #logo {
-    color: white;
+    padding: 0.5rem;
   }
 
   #navList {
@@ -357,6 +367,22 @@ body {
     text-align: center;
     padding: 5rem 5rem;
     margin-top: 1rem;
+  }
+
+  #hero {
+    padding: 3rem 2rem 1rem 2rem;
+  }
+  #timeline {
+    padding: 1.5rem 1rem 1rem 1rem;
+  }
+  .timeline {
+    padding-top: 0px;
+  }
+  #timeline h1 {
+    margin-bottom: 0px;
+  }
+  #projects {
+    padding: 0.5rem 2rem 0rem 2rem;
   }
 
   .image-section {
@@ -457,30 +483,11 @@ body {
 
 /* Mobile */
 @media (max-width: 768px) {
-  #navbar {
-    padding: 0.5rem;
-  }
   #hero,
   #projects {
     flex-direction: column;
     align-items: center;
     text-align: center;
-  }
-
-  #hero {
-    padding: 3rem 2rem 1rem 2rem;
-  }
-  #timeline {
-    padding: 1.5rem 1rem 1rem 1rem;
-  }
-  .timeline {
-    padding-top: 0px;
-  }
-  #timeline h1 {
-    margin-bottom: 0px;
-  }
-  #projects {
-    padding: 0.5rem 2rem 0rem 2rem;
   }
 
   .container.left,
