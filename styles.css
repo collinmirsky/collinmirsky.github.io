@@ -1,7 +1,7 @@
 :root {
-  --scarlet: black;
-  --light-olive: white;
-  --light-teal: black;
+  --black: black;
+  --white: white;
+  --grey: #ecf0f1;
 }
 
 * {
@@ -25,7 +25,7 @@ html {
 
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: var(--light-olive);
+  background-color: var(--white);
   font-size: 62.5%; /* 10px as base size for easy rem calculation */
 }
 
@@ -61,13 +61,13 @@ body {
 
 #navList li a {
   text-decoration: none;
-  color: var(--scarlet);
+  color: var(--black);
   position: relative;
   font-weight: 400;
 }
 
 #navList li a:hover {
-  color: var(--light-teal);
+  color: var(--black);
 }
 
 #navList li a::before {
@@ -77,7 +77,7 @@ body {
   height: 2px;
   bottom: -5px;
   left: 50%;
-  background-color: var(--light-teal);
+  background-color: var(--black);
   transition: all 0.5s ease;
 }
 
@@ -126,7 +126,7 @@ body {
 }
 
 #timeline {
-  background-color: #ecf0f1;
+  background-color: var(--grey);
   padding: 40px 0px;
 }
 
@@ -146,8 +146,8 @@ body {
 .text-section button {
   padding: 0.5rem 1rem;
   border: none;
-  background-color: var(--light-teal);
-  color: var(--light-olive);
+  background-color: var(--black);
+  color: var(--white);
   font-size: 1rem;
   cursor: pointer;
 }
@@ -176,7 +176,7 @@ body {
   content: "";
   position: absolute;
   width: 2px;
-  background: var(--light-teal);
+  background: var(--black);
   top: 0;
   bottom: 0;
   left: 50%;
@@ -205,8 +205,8 @@ body {
   height: 16px;
   top: calc(50% - 8px);
   right: -8px;
-  background: var(--light-olive);
-  border: 2px solid var(--light-teal);
+  background: var(--white);
+  border: 2px solid var(--black);
   border-radius: 16px;
   z-index: 1;
 }
@@ -222,7 +222,7 @@ body {
   height: 2px;
   top: calc(50% - 1px);
   right: 8px;
-  background: var(--light-teal);
+  background: var(--black);
   z-index: 1;
 }
 
@@ -237,7 +237,7 @@ body {
   text-align: center;
   font-size: 0.875rem;
   font-weight: bold;
-  color: var(--light-teal);
+  color: var(--black);
   text-transform: uppercase;
   letter-spacing: 1px;
   z-index: 1;
@@ -258,12 +258,12 @@ body {
   height: 40px;
   padding: 9px 0;
   top: calc(50% - 20px);
-  background: var(--light-olive);
-  border: 2px solid var(--light-teal);
+  background: var(--white);
+  border: 2px solid var(--black);
   border-radius: 40px;
   text-align: center;
   font-size: 1.125rem;
-  color: var(--light-teal);
+  color: var(--black);
   z-index: 1;
 }
 
@@ -277,7 +277,7 @@ body {
 
 .container .content {
   padding: 30px 90px 30px 30px;
-  background: var(--light-olive);
+  background: var(--white);
   position: relative;
   border-radius: 0 500px 500px 0;
 }
@@ -291,19 +291,27 @@ body {
   margin: 0 0 10px 0;
   font-size: 1.125rem;
   font-weight: normal;
-  color: var(--light-teal);
+  color: var(--black);
 }
 
 .container .content p {
   margin: 0;
   font-size: 1rem;
   line-height: 1.375rem;
-  color: var(--scarlet);
+  color: var(--black);
 }
 
 /* ... MOBILE ... */
 
 @media (max-width: 1200px) {
+  #navbar {
+    background-color: rgba(0, 0, 0, 0.7); /* black with 70% opacity */
+  }
+
+  #navbar #logo {
+    color: white;
+  }
+
   #navList {
     display: none;
   }
@@ -419,7 +427,7 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 2rem 2rem;
+    padding: 3rem 2rem;
     margin-top: 1rem;
   }
 }
@@ -442,11 +450,11 @@ body {
 
 .footer-section p {
   font-size: 1rem;
-  color: var(--scarlet);
+  color: var(--black);
 }
 
 .footer-section a {
-  color: var(--light-teal);
+  color: var(--black);
   text-decoration: none;
 }
 
