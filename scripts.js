@@ -14,37 +14,41 @@ document.addEventListener("DOMContentLoaded", function () {
 // Main JS
 const heroH1 = document.querySelector("#hero h1");
 
-function typeText(text, index, callback) {
-  if (index < text.length) {
-    const span = document.createElement("span");
-    span.textContent = text[index];
-    heroH1.appendChild(span);
-    setTimeout(() => typeText(text, index + 1, callback), 100); // 100ms delay between each letter
-  } else {
-    callback();
-  }
+function typeText(text, callback) {
+  let index = 0;
+  const intervalId = setInterval(() => {
+    if (index < text.length) {
+      heroH1.appendChild(document.createElement("span")).textContent =
+        text[index++];
+    } else {
+      clearInterval(intervalId);
+      callback();
+    }
+  }, 100);
 }
 
 function deleteText(callback) {
-  if (heroH1.children.length > 0) {
-    heroH1.removeChild(heroH1.lastChild);
-    setTimeout(() => deleteText(callback), 100); // 100ms delay between each letter
-  } else {
-    callback();
-  }
+  const intervalId = setInterval(() => {
+    if (heroH1.children.length > 0) {
+      heroH1.removeChild(heroH1.lastChild);
+    } else {
+      clearInterval(intervalId);
+      callback();
+    }
+  }, 100);
 }
 
 function animateText() {
-  typeText("Hello!", 0, () => {
-    setTimeout(() => {
-      deleteText(() => {
-        typeText("Nice to meet you!", 0, () => {
-          setTimeout(() => {
-            deleteText(animateText);
-          }, 5000);
-        });
-      });
-    }, 5000);
+  typeText("Hello!", () => {
+    setTimeout(
+      () =>
+        deleteText(() =>
+          typeText("Nice to meet you!", () =>
+            setTimeout(() => deleteText(animateText), 5000)
+          )
+        ),
+      5000
+    );
   });
 }
 

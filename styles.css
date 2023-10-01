@@ -122,7 +122,7 @@ body {
 #hero h1 {
   display: inline-block;
   position: relative;
-  min-height: 1.25em;
+  min-height: 1.5em;
 }
 
 #hero h1::after {
