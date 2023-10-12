@@ -691,8 +691,8 @@ body {
   .frameContainer {
     width: auto;
     height: auto;
-    min-width: 300px;
-    min-height: 300px;
+    min-width: 275px;
+    min-height: 275px;
   }
 
   /* Canvas container itself */
@@ -714,6 +714,11 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
+  }
+
+  #blochGameCanvas {
+    width: 300px !important;
+    height: 450px !important;
   }
 
   /* Adjustments for project display in mobile view */
@@ -742,8 +747,8 @@ body {
 
   /* Canvas container itself */
   #canvasContainer {
-    min-height: 350px;
-    min-width: 350px;
+    min-height: 300px;
+    min-width: 300px;
   }
   #colorContainer {
     justify-content: center;
