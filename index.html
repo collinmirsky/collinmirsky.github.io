@@ -128,24 +128,109 @@
     </section>
 
     <section id="projects">
-      <div class="project-section">
-        <div id="blockGame-container"></div>
+      <h1>Projects</h1>
+
+      <div class="content-section">
+        <div class="project-section">
+          <div id="blockGame-container"></div>
+        </div>
+        <div class="text-section">
+          <p>
+            Most of my professional work is proprietary or under NDA. However, I
+            am always learning and exploring unique ways to implement new
+            frameworks or technologies into personal or private client
+            applications. Any projects or code I can share for my portfolio, I
+            will do so here.
+          </p>
+          <h2><i class="fas fa-project-diagram"></i> Generative Block Game</h2>
+          <p class="project-description">
+            This is a generative Game Boy x Tetris style project I coded with
+            p5.js to sharpen my JavaScript skills. The canvas and all internal
+            elements are rendered with JavaScript. Each block drop sequence is
+            randomly generated (shapes, colors and positioning). I also
+            implemented more advanced techniques such as collision detection.
+            Once a block reaches the top of the screen container, the logic
+            determines the game is now over, clears the screen and all
+            variables, displays the game over text for 5 seconds and then loops.
+            It's not intended to be playable; just fun to watch.
+            <span class="github-link"
+              ><a
+                href="https://github.com/collinmirsky/collinmirsky.github.io"
+                target="_blank"
+                >My GitHub</a
+              ></span
+            >
+          </p>
+        </div>
       </div>
-      <div class="text-section">
-        <h1>Projects</h1>
-        <p>
-          I am always learning and exploring unique ways to implement new
-          frameworks or technologies into personal or private client
-          applications.
-        </p>
-        <p>
-          This is a generative Game Boy x Tetris style project I coded from
-          scratch with p5.js to sharpen my JavaScript skills. The canvas and all
-          internal elements are rendered with JavaScript. Each block drop
-          sequence is randomly generated (shapes, colors and positioning). I
-          also implemented more advanced techniques such as collision detection.
-          It's not intended to be playable; just fun to look at!
-        </p>
+    </section>
+
+    <section id="additional-projects">
+          <!-- Infinity Container Area-->
+          <div class="flexParent">  <!-- Your flex parent -->
+            <h2><i class="fas fa-project-diagram"></i>Infinity Patterns</h2>
+            <div class="text-section">
+            <p>
+              Currently a work in progress. On load, the JavaScript code randomly
+              chooses a color palette between 1-10 colors and assigns that palette to the
+              project. Then the code generates a set number of squares using the
+              chosen colors and cycles through a predetermined collection of patterns at random. The experience should be responsive and should adjust to the browser size on window resize. Pressing the "regenerate" button forces a refresh to get new colors and should also fix any potential issues with responsive recalculation on window resize. This project is best experienced full screen.
+              <span class="github-link"
+              ><a
+                href="/projects/infinity-patterns/index.html"
+                target="_blank"
+                >View fullscreen</a
+              ></span
+            >
+            </p>
+          </div>
+            <div id="colorDisplay">
+              <button id="regenerateButton">
+                <i class="fas fa-sync-alt"></i>
+            </button>
+              <div id="colorContainer"></div> <!-- We'll update the colors in this container -->
+          </div>
+            <div class="mainContainer">
+                <div class="frameContainer">
+                    <div id="canvasContainer"></div>  <!-- Canvas will be injected here -->
+                </div>
+            </div>
+        </div>
+        
+<!-- 
+      <div class="project-row">
+        <div class="project-column">
+          <h2><i class="fas fa-project-diagram"></i>Infinity Patterns</h2>
+          <p>
+            Currently a work in progress. On load, the JavaScript code randomly
+            chooses a color palette between 1-10 colors and assigns that to the
+            project. Then the code generates a set number of squares using the
+            chosen color palette and cycles through a set number of patterns at
+            random. It is responsive and will fit any browser size.
+          </p>
+
+        
+        
+        <div class="project-column">
+          <h2><i class="fas fa-project-diagram"></i>Coming soon...</h2>
+          <img
+            src="https://placehold.co/400x400?text=Coming Soon"
+            alt="Coming soon project placeholder image"
+          />
+          <p>Nothing yet...</p>
+        </div>
+      </div>
+      Add more as I have more projects <div class="project-row">
+        <div class="project-column">
+          <h2><i class="fas fa-project-diagram"></i>Project 3</h2>
+          <img src="https://placehold.co/400" alt="Placeholder Image 3" />
+          <p>Description for project 3...</p>
+        </div>
+        <div class="project-column">
+          <h2><i class="fas fa-project-diagram"></i>Project 4</h2>
+          <img src="https://placehold.co/400" alt="Placeholder Image 4" />
+          <p>Description for project 4...</p>
+        </div> -->
       </div>
     </section>
 
@@ -168,5 +253,8 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script src="scripts.js" defer></script>
+    <script src="projects/infinity-patterns/scripts.js" defer></script>
   </body>
+  <!-- Written by Collin Mirsky 2023 -->
+  <!-- collinmirsky.gitbhub.io -->
 </html>

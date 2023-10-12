@@ -1,34 +1,49 @@
+/* ================================================
+   BASE STYLES
+   ================================================ */
+
+/* Root Variables */
 :root {
   --black: black;
   --white: white;
   --grey: #ecf0f1;
 }
 
-* {
+/* Reset Styles */
+*,
+::after,
+::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   transition: all 0.5s ease;
   color: var(--black);
 }
+
+/* Smooth Scrolling */
 html {
   scroll-behavior: smooth;
 }
-/**
- * Disable smooth scrolling when users have prefers-reduced-motion enabled
- */
+
+/* Media query to disable smooth scrolling for prefers-reduced-motion */
 @media screen and (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 }
 
+/* Default Body Styles */
 body {
   font-family: "Open Sans", sans-serif;
   background-color: var(--white);
   font-size: 62.5%;
 }
 
+/* ================================================
+   NAVIGATION STYLES
+   ================================================ */
+
+/* Navbar Styles */
 #navbar {
   position: fixed;
   top: 0;
@@ -41,8 +56,9 @@ body {
   z-index: 1000;
 }
 
+/* Navbar Scrolling Styles */
 #navbar.scrolled {
-  background-color: rgba(0, 0, 0, 0.7); /* black with 70% opacity */
+  background-color: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
   color: var(--white);
 }
 
@@ -51,6 +67,7 @@ body {
   color: var(--white);
 }
 
+/* Navbar Logo Styles */
 #logo {
   font-size: 1.5rem;
   margin-left: 2rem;
@@ -58,6 +75,7 @@ body {
   font-weight: 700;
 }
 
+/* Navbar List Styles */
 #navList {
   list-style: none;
   display: flex;
@@ -69,6 +87,7 @@ body {
   margin-right: 2rem;
 }
 
+/* Nav Links Styles */
 #navList li a {
   text-decoration: none;
   color: var(--black);
@@ -80,6 +99,7 @@ body {
   color: var(--black);
 }
 
+/* Animated Underline for Nav Links */
 #navList li a::before {
   content: "";
   position: absolute;
@@ -100,10 +120,16 @@ body {
   left: 0;
 }
 
+/* Mobile Nav Icon (Initially Hidden) */
 #navIcon {
   display: none;
 }
 
+/* ================================================
+   MAIN CONTENT STYLES
+   ================================================ */
+
+/* General Layout for Hero and Projects */
 #hero,
 #projects {
   display: flex;
@@ -117,8 +143,96 @@ body {
 
 #projects {
   padding: 2rem 10rem;
+  padding-bottom: 0;
 }
 
+#projects,
+#additional-projects {
+  flex-direction: column;
+}
+/* Projects Section */
+#projects .content-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#projects .project-section,
+#projects .text-section {
+  flex: 1;
+  flex-grow: 1; /* Allow both sections to grow equally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Vertically center content */
+}
+
+#projects .text-section h2,
+#additional-projects h2 {
+  padding-bottom: 10px;
+  font-size: 1.125rem;
+}
+
+#projects .text-section .github-link,
+#additional-projects .text-section .github-link {
+  display: block;
+  padding-top: 10px;
+  font-size: 0.75em;
+}
+
+#projects h1,
+#additional-projects h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: "PT Sans", sans-serif;
+}
+
+/* Additional Projects Section */
+#additional-projects {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 10rem;
+  margin-top: 5rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+#additional-projects img {
+  max-width: 1200px;
+  padding: 20px 0px;
+}
+
+#additional-projects h2 {
+  padding-bottom: 10px;
+}
+
+#additional-projects i {
+  margin-right: 5px;
+}
+
+/* Project Rows and Columns */
+.project-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+/* Responsive Design for Projects */
+@media (max-width: 768px) {
+  .project-row {
+    flex-direction: column;
+  }
+
+  .project-column {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Hero Section Styles */
 #hero h1 {
   display: inline-block;
   position: relative;
@@ -129,10 +243,43 @@ body {
   content: "|";
   position: absolute;
   left: 100%;
-  margin-left: 10x; /* Blink cursor position */
+  margin-left: 10px; /* Blink cursor position */
   animation: blink 1s infinite;
 }
 
+#regenerateButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  transition: transform 0.3s ease; /* Animation on hover */
+  display: inline-block;
+  margin-right: 5px;
+}
+
+#regenerateButton:hover {
+  color: #666;
+  transform: rotate(20deg); /* Slight rotation on hover */
+}
+
+#regenerateButton:active {
+  animation: rotateIcon 0.5s forwards; /* 360 rotation on click */
+}
+
+/* Regenerate button rotation */
+@keyframes rotateIcon {
+  0% {
+    transform: rotate(20deg); /* Start from the hovered state */
+  }
+  100% {
+    transform: rotate(
+      380deg
+    ); /* Rotate 360 degrees back to its original position */
+  }
+}
+
+/* Blink animation for Hero cursor */
 @keyframes blink {
   0%,
   100% {
@@ -142,21 +289,25 @@ body {
     opacity: 0;
   }
 }
-
+/* ================================================
+   TIMELINE STYLES
+   ================================================ */
 #timeline {
   background-color: var(--grey);
   padding: 40px 0px;
 }
 
 .text-section h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
   font-family: "PT Sans", sans-serif;
+  text-align: center;
+  padding-bottom: 25px;
 }
 
 .text-section p {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 400;
   margin-bottom: 2rem;
 }
@@ -184,10 +335,6 @@ body {
   max-width: 1140px;
   margin: 0 auto;
   padding: 15px 0;
-}
-
-#timeline h1 {
-  text-align: center;
 }
 
 .timeline::after {
@@ -239,13 +386,13 @@ body {
   width: 50px;
   height: 2px;
   top: calc(50% - 1px);
-  right: 8px;
+  right: 6px;
   background: var(--black);
   z-index: 1;
 }
 
 .container.right::before {
-  left: 8px;
+  left: 6px;
 }
 
 .container .date {
@@ -308,7 +455,7 @@ body {
 .container .content h2 {
   margin: 0 0 10px 0;
   font-size: 1.125rem;
-  font-weight: normal;
+  font-weight: bold;
   color: var(--black);
 }
 
@@ -319,7 +466,68 @@ body {
   color: var(--black);
 }
 
-/* Footer */
+/* ================================================
+   COLOR DISPLAY AND ASSOCIATED ELEMENTS
+   ================================================ */
+
+/* General flex layout for color display container */
+.flexParent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* Layout and spacing for the color container */
+#colorContainer {
+  display: inline-block;
+  justify-content: left;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+/* Styling for each color square inside the color container */
+.colorSquare {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+/* Main canvas container styles */
+.mainContainer {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Frame container surrounding the canvas */
+.frameContainer {
+  box-sizing: border-box;
+  max-width: 1200px;
+  max-height: 600px;
+  width: 1200px;
+  height: 600px;
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+/* Canvas container itself */
+#canvasContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ================================================
+   FOOTER STYLES
+   ================================================ */
 
 #footer {
   background-color: var(--grey);
@@ -348,20 +556,23 @@ body {
 .footer-section a:hover {
   text-decoration: underline;
 }
-
-/* ... BREAKPOINTS ... */
-/* MID */
+/* ================================================
+   MID-SCREEN RESPONSIVE STYLES (up to 1200px)
+   ================================================ */
 @media (max-width: 1200px) {
+  /* Navigation bar adjustments */
   #navbar {
     padding: 0.5rem;
   }
 
   #navList {
-    display: none;
+    display: none; /* Hide nav list for smaller screens, assuming mobile navigation will take place */
   }
 
+  /* General content layout adjustments */
   #hero,
-  #projects {
+  #projects,
+  #additional-projects {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -369,20 +580,71 @@ body {
     margin-top: 1rem;
   }
 
+  #projects {
+    padding-bottom: 0;
+  }
+
   #hero {
     padding: 3rem 2rem 1rem 2rem;
   }
+
   #timeline {
     padding: 1.5rem 1rem 1rem 1rem;
   }
+
   .timeline {
     padding-top: 0px;
   }
+
   #timeline h1 {
     margin-bottom: 0px;
   }
-  #projects {
+
+  .container.left .content,
+  .container.right .content {
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    text-align: left;
+  }
+
+  .container.left .date,
+  .container.right .date {
+    right: auto;
+    left: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+
+  .container .date,
+  .container .icon {
+    position: static;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .container.left .icon,
+  .container.right .icon {
+    right: auto;
+    left: 16px;
+  }
+
+  .container::after,
+  .container::before {
+    display: none;
+  }
+
+  #projects,
+  #additional-projects {
     padding: 0.5rem 2rem 0rem 2rem;
+  }
+
+  /* Project section adjustments */
+  #projects .content-section {
+    flex-direction: column;
+  }
+
+  #projects .text-section {
+    order: -1; /* Place text-section before project-section */
   }
 
   .image-section {
@@ -401,22 +663,10 @@ body {
   }
 
   .image-section img {
-    max-width: 400px;
+    max-width: 350px;
   }
 
-  .text-section h1 {
-    font-size: 2rem;
-  }
-
-  h1 {
-    margin-bottom: 0rem;
-  }
-
-  .text-section p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-  }
-
+  /* Timeline adjustments */
   .timeline::after {
     left: 30px;
     display: none;
@@ -431,76 +681,55 @@ body {
   .container.left,
   .container.right {
     left: 0%;
+    padding-top: 0;
   }
 
-  .container .date,
-  .container .icon {
-    position: static;
-    display: inline-block;
-    margin-right: 10px;
+  /* Canvas adjustments */
+  .mainContainer {
+    margin-bottom: 50px;
+  }
+  .frameContainer {
+    width: auto;
+    height: auto;
+    min-width: 300px;
+    min-height: 300px;
   }
 
-  .container .date {
-    margin-bottom: 20px;
-  }
-
-  .container.left .date,
-  .container.right .date {
-    right: auto;
-    left: 15px;
-    text-align: left;
-  }
-
-  .container.left .icon,
-  .container.right .icon {
-    right: auto;
-    left: 16px;
-  }
-
-  .container.left .content,
-  .container.right .content {
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    text-align: left;
-  }
-
-  .container::after {
-    display: none;
-  }
-
-  .container.right::after {
-    display: none;
-  }
-
-  .container::before {
-    display: none;
-  }
-
-  .container.right::before {
-    display: none;
+  /* Canvas container itself */
+  #canvasContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   }
 }
 
-/* Mobile */
+/* ================================================
+   MOBILE RESPONSIVE STYLES (up to 768px)
+   ================================================ */
 @media (max-width: 768px) {
+  /* General layout adjustments for main sections */
   #hero,
-  #projects {
+  #projects,
+  #additional-projects {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
+  /* Adjustments for project display in mobile view */
   .container.left,
   .container.right {
     left: 0%;
     padding-top: 0;
   }
 
+  /* Adjust image display for mobile view */
   .image-section img {
     max-width: 400px;
     width: 100%;
   }
 
+  /* Footer content adjustments for mobile */
   .footer-content {
     flex-direction: column;
     text-align: center;
@@ -509,5 +738,14 @@ body {
 
   .footer-section {
     margin-bottom: 10px;
+  }
+
+  /* Canvas container itself */
+  #canvasContainer {
+    min-height: 350px;
+    min-width: 350px;
+  }
+  #colorContainer {
+    justify-content: center;
   }
 }
