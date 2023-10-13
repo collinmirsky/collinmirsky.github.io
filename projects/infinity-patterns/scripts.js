@@ -109,8 +109,19 @@ function setup() {
   // Set the content of the colorContainer div
   document.getElementById("colorContainer").innerHTML = colorContainerContent;
 
-  for (let x = 0; x < 50; x++) {
-    for (let y = 0; y < 50; y++) {
+  let numSquaresX, numSquaresY;
+
+  if (windowWidth >= 1200) {
+    numSquaresX = 40;
+    numSquaresY = 40;
+  } else {
+    // Reduce the number of squares for screens smaller than 1200px
+    numSquaresX = 25;
+    numSquaresY = 25;
+  }
+
+  for (let x = 0; x < numSquaresX; x++) {
+    for (let y = 0; y < numSquaresY; y++) {
       squares.push({
         x: x * 10,
         y: y * 10,
