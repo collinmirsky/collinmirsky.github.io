@@ -112,12 +112,12 @@ function setup() {
   let numSquaresX, numSquaresY;
 
   if (windowWidth >= 1200) {
-    numSquaresX = 40;
-    numSquaresY = 40;
+    numSquaresX = 35;
+    numSquaresY = 35;
   } else {
     // Reduce the number of squares for screens smaller than 1200px
-    numSquaresX = 25;
-    numSquaresY = 25;
+    numSquaresX = 20;
+    numSquaresY = 20;
   }
 
   for (let x = 0; x < numSquaresX; x++) {
@@ -184,17 +184,24 @@ function moveSquares() {
   }
 }
 
+let resizeTimer;
 function windowResized() {
   let canvasContainerElem = document.getElementById("canvasContainer");
   console.log(
     "New Dimensions:",
     canvasContainerElem.clientWidth,
     canvasContainerElem.clientHeight
-  ); // Log new dimensions
+  );
   resizeCanvas(
     canvasContainerElem.clientWidth,
     canvasContainerElem.clientHeight
   );
+
+  // Debounce to avoid too many calls to setup() during resize
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    setup();
+  }, 200);
 }
 
 function setNewTargets() {
