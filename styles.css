@@ -243,7 +243,7 @@ body {
   content: "|";
   position: absolute;
   left: 100%;
-  margin-left: 10px; /* Blink cursor position */
+  margin-left: 3px; /* Blink cursor position */
   animation: blink 1s infinite;
 }
 
