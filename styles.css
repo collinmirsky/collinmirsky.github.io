@@ -254,7 +254,7 @@ body {
   font-size: 24px;
   color: #333;
   transition: transform 0.3s ease; /* Animation on hover */
-  display: inline-block;
+  display: block;
   margin-right: 5px;
 }
 
@@ -702,6 +702,10 @@ body {
     min-height: 600px;
     min-width: 600px;
     overflow: hidden;
+  }
+
+  #regenerateButton {
+    margin: 0 auto;
   }
 }
 

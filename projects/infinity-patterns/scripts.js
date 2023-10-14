@@ -76,8 +76,21 @@ const transitions = {
   },
 };
 
+function initializeColors() {
+  let numColors = floor(random(1, 11));
+  colors = [];
+  let colorContainerContent = `Number of colors: ${numColors} <br>Color Palette: &nbsp;`;
+
+  for (let i = 0; i < numColors; i++) {
+    let col = color(random(255), random(255), random(255));
+    colors.push(col);
+    colorContainerContent += `<div class="colorSquare" style="background-color:${col};"></div>`;
+  }
+
+  document.getElementById("colorContainer").innerHTML = colorContainerContent;
+}
+
 function setup() {
-  // If there's an existing canvas, remove it
   if (canvas) {
     canvas.remove();
   }
@@ -93,21 +106,7 @@ function setup() {
   );
   canvas.parent("canvasContainer");
 
-  let numColors = floor(random(1, 11));
-  colors = [];
-
-  // Start building the content for the colorContainer div
-  let colorContainerContent = `Number of colors: ${numColors} / Color Palette: &nbsp;`;
-
-  for (let i = 0; i < numColors; i++) {
-    let col = color(random(255), random(255), random(255));
-    colors.push(col);
-
-    colorContainerContent += `<div class="colorSquare" style="background-color:${col};"></div>`;
-  }
-
-  // Set the content of the colorContainer div
-  document.getElementById("colorContainer").innerHTML = colorContainerContent;
+  initializeColors();
 
   let numSquaresX, numSquaresY;
 
@@ -115,7 +114,6 @@ function setup() {
     numSquaresX = 35;
     numSquaresY = 35;
   } else {
-    // Reduce the number of squares for screens smaller than 1200px
     numSquaresX = 20;
     numSquaresY = 20;
   }
@@ -130,14 +128,13 @@ function setup() {
         x: x * 10,
         y: y * 10,
       });
-      squareColors.push(colors[floor(random(numColors))]);
+      squareColors.push(colors[floor(random(colors.length))]);
     }
   }
 
   setNewTargets();
 }
 
-/* Add Event Listener to Regenerate button if it is available */
 let regenerateButton = document.getElementById("regenerateButton");
 if (regenerateButton) {
   regenerateButton.addEventListener("click", function () {
@@ -145,7 +142,6 @@ if (regenerateButton) {
   });
 }
 
-// Only add this listener once, after the page has loaded
 window.addEventListener("DOMContentLoaded", (event) => {
   let regenerateButton = document.getElementById("regenerateButton");
   if (regenerateButton) {
@@ -197,11 +193,43 @@ function windowResized() {
     canvasContainerElem.clientHeight
   );
 
-  // Debounce to avoid too many calls to setup() during resize
+  // Debounce to avoid too many calls to recalculatePositions() during resize
   clearTimeout(resizeTimer);
   resizeTimer = setTimeout(() => {
-    setup();
+    recalculatePositions(); // Recalculate positions without resetting everything
   }, 200);
+}
+
+function recalculatePositions() {
+  let numSquaresX, numSquaresY;
+
+  if (windowWidth >= 1200) {
+    numSquaresX = 30;
+    numSquaresY = 30;
+  } else {
+    numSquaresX = 15;
+    numSquaresY = 15;
+  }
+
+  squares = [];
+  targets = [];
+  squareColors = []; // Resetting squareColors array
+
+  for (let x = 0; x < numSquaresX; x++) {
+    for (let y = 0; y < numSquaresY; y++) {
+      squares.push({
+        x: x * 10,
+        y: y * 10,
+      });
+      targets.push({
+        x: x * 10,
+        y: y * 10,
+      });
+      squareColors.push(colors[floor(random(colors.length))]); // Recalculate colors for the new squares
+    }
+  }
+
+  setNewTargets();
 }
 
 function setNewTargets() {
@@ -217,7 +245,6 @@ function setNewTargets() {
 
   for (let i = 0; i < targets.length; i++) {
     let newTarget = transitions[transitionName](i);
-
     targets[i].x = constrain(newTarget.x, 0, width - 10);
     targets[i].y = constrain(newTarget.y, 0, height - 10);
   }
