@@ -357,3 +357,5 @@ const blockGameSketch = (p) => {
 };
 
 new p5(blockGameSketch);
+/*Written by Collin Mirsky 2023
+collinmirsky.gitbhub.io*/

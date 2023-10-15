@@ -249,3 +249,6 @@ function setNewTargets() {
     targets[i].y = constrain(newTarget.y, 0, height - 10);
   }
 }
+
+/*Written by Collin Mirsky 2023
+collinmirsky.gitbhub.io*/
