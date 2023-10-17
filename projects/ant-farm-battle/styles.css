@@ -4,7 +4,6 @@ body {
   align-items: center;
   height: 100vh;
   font-family: "Roboto", sans-serif;
-  background-color: #ecf0f1;
 }
 
 canvas {
@@ -60,15 +59,18 @@ header {
   font-weight: normal;
   width: 100%;
   margin: 5px 0px;
-  background-color: #eee;
 }
 input[type="text"] {
   width: 100%;
   margin-bottom: 10px;
   padding: 5px;
   box-sizing: border-box;
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   border-radius: 5px;
+  transition: 0.3s ease;
+}
+input[type="text"]:disabled {
+  background-color: lightgrey;
 }
 
 button {
@@ -106,6 +108,7 @@ button:disabled {
 @media screen and (max-width: 768px) {
   body {
     align-items: baseline;
+    background-color: #fff;
   }
 
   #game-container {
