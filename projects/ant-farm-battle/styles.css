@@ -38,7 +38,11 @@ header {
 }
 
 #players-column {
-  width: 150px;
+  width: 200px;
+}
+
+#players-column button {
+  margin-right: 10px;
 }
 
 #players-column {
@@ -60,6 +64,18 @@ button {
   padding: 10px 15px;
   font-size: 16px;
   cursor: pointer;
+}
+
+#leaderboard {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  max-height: 200px; /* Adjust the height as needed */
 }
 
 /*Written by Collin Mirsky 2023

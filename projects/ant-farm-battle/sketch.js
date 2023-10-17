@@ -18,6 +18,7 @@ let defaultNames = [
 ];
 let playerInputs = [];
 let startButton;
+let shareButton;
 
 let namesFromQueryString = getNamesFromQueryString();
 
@@ -37,6 +38,10 @@ function setup() {
   frameRate(30);
   setupPlayersColumn();
   fillAntNamesRandomly();
+
+  shareButton = createButton("SHARE");
+  shareButton.parent(playersColumn);
+  shareButton.mousePressed(shareGame);
 }
 
 function setupPlayersColumn() {
@@ -114,14 +119,29 @@ function createSplatterBetween(ant1, ant2) {
   let splatterVertices = [];
   let x = (ant1.pos.x + ant2.pos.x) / 2;
   let y = (ant1.pos.y + ant2.pos.y) / 2;
-  for (let k = 0; k < 10; k++) {
-    let angle = map(k, 0, 10, 0, TWO_PI);
-    let r = random(10, 15);
-    let sx = x + cos(angle) * r;
-    let sy = y + sin(angle) * r;
+
+  let detail = 0.1; // Adjust this value to control the smoothness of the splatter
+
+  beginShape();
+  for (let a = 0; a < TWO_PI; a += detail) {
+    let r = noise(x * 0.05, y * 0.05, a * 0.5) * 25; // Adjust the multiplier for size and detail
+    let sx = x + cos(a) * r;
+    let sy = y + sin(a) * r;
     splatterVertices.push(createVector(sx, sy));
+    vertex(sx, sy);
   }
-  splatters.push({ vertices: splatterVertices });
+  endShape(CLOSE);
+
+  // Randomly generate a blood-like color
+  let splatterColor = color(random(100, 255), 0, 0, random(100, 255)); // Shades of red
+
+  // Create an object to represent the splatter with vertices and color
+  let splatter = {
+    vertices: splatterVertices,
+    color: splatterColor,
+  };
+
+  splatters.push(splatter);
 }
 
 function initiateCharging() {
@@ -373,7 +393,46 @@ function displayWinner() {
   fill(0);
   textAlign(CENTER, CENTER);
   textSize(24);
-  text(ants[0].name + " Wins!", width / 2, height / 2);
+  text(ants[0].name + " Wins! 🏆", width / 2, height / 2);
+}
+
+function shareGame() {
+  let names = [];
+  for (const input of playerInputs) {
+    let name = input.value();
+    if (name) {
+      names.push(name);
+    }
+  }
+
+  // Generate a URL with query string
+  let queryString = `?names=${names.join(",")}`;
+  let shareURL =
+    window.location.origin + window.location.pathname + queryString;
+
+  // Create a temporary input element to copy the URL to the clipboard
+  let tempInput = document.createElement("input");
+  tempInput.value = shareURL;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempInput);
+
+  // Show a popup to inform the user
+  let popup = document.createElement("div");
+  popup.textContent = "URL copied to clipboard! Share with your friends.";
+  popup.style.position = "fixed";
+  popup.style.top = "10px";
+  popup.style.left = "10px";
+  popup.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+  popup.style.color = "#fff";
+  popup.style.padding = "10px";
+  popup.style.borderRadius = "5px";
+  popup.style.zIndex = "999";
+  document.body.appendChild(popup);
+  setTimeout(() => {
+    popup.remove();
+  }, 5000);
 }
 
 /*Written by Collin Mirsky 2023
