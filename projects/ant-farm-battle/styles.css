@@ -3,8 +3,8 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f5f5f5;
   font-family: "Roboto", sans-serif;
+  background-color: #ecf0f1;
 }
 
 canvas {
@@ -15,13 +15,19 @@ canvas {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 25px;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: row;
 }
 
 header {
   text-align: center;
   font-size: 24px;
-  margin-bottom: 20px;
   font-weight: 700;
+  margin-bottom: 25px;
 }
 
 #ant-farm-canvas,
@@ -52,30 +58,92 @@ header {
 #players-column h1 {
   font-size: 20px;
   font-weight: normal;
+  width: 100%;
+  margin: 5px 0px;
+  background-color: #eee;
 }
 input[type="text"] {
   width: 100%;
   margin-bottom: 10px;
-  padding: 1px;
+  padding: 5px;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 button {
-  padding: 10px 15px;
+  width: 40%;
+  padding: 10px;
   font-size: 16px;
   cursor: pointer;
+  border-radius: 5px;
+  transition: 0.3s ease;
+  color: white;
+  font-weight: bold;
+  background-color: #009b3a;
+  border: 1px solid #009b3a;
+}
+button:hover {
+  background-color: #64e687; /* Darker blue on hover */
+  color: white;
 }
 
-#leaderboard {
-  margin-top: 20px;
-  padding: 20px;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-y: auto;
-  max-height: 200px; /* Adjust the height as needed */
+button.share-btn {
+  background-color: #00a1de;
+  border: 1px solid #00a1de;
+}
+
+button.share-btn:hover {
+  background-color: #84cbf3;
+}
+
+button:disabled {
+  background-color: #565a5c;
+  border: 1px solid #565a5c;
+  color: lightgrey;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    align-items: baseline;
+  }
+
+  #game-container {
+    flex-direction: column-reverse;
+  }
+
+  #players-column {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to the next row */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  #ant-farm-canvas {
+    margin: 0px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    width: calc(50% - 5px); /* Subtracting some margin/padding for spacing */
+    margin-left: 5px;
+  }
+  input[type="text"]:first-child {
+    margin-left: 0;
+  }
+
+  /* Reduce the margin for the header on smaller screens */
+  header,
+  h1 {
+    margin-bottom: 5px; /* Adjust this value as needed */
+  }
 }
 
 /*Written by Collin Mirsky 2023

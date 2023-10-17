@@ -33,13 +33,15 @@ function getNamesFromQueryString() {
 }
 
 function setup() {
-  let canvas = createCanvas(420, 420);
+  let canvasSize = window.innerWidth >= 768 ? 450 : 350; // Desktop : Mobile sizing -- always a square
+  let canvas = createCanvas(canvasSize, canvasSize); // Apply sizing
   canvas.parent("ant-farm-canvas");
   frameRate(30);
   setupPlayersColumn();
   fillAntNamesRandomly();
 
   shareButton = createButton("SHARE");
+  shareButton.class("share-btn");
   shareButton.parent(playersColumn);
   shareButton.mousePressed(shareGame);
 }
