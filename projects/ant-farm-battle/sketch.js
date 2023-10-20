@@ -22,6 +22,8 @@ let shareButton;
 let isBattleStarted = false;
 let battleTime = 0;
 let timerInterval;
+let killMarkers = [];
+let explosions = [];
 
 let namesFromQueryString = getNamesFromQueryString();
 
@@ -81,6 +83,28 @@ function draw() {
   for (const path of paths) {
     ellipse(path.x, path.y, 10, 10);
   }
+
+  // Draw killMarkers
+  for (let killMarker of killMarkers) {
+    textSize(20); // Adjust the size as needed
+    text("☠️", killMarker.x, killMarker.y);
+  }
+
+  // Draw explosions
+  for (let i = explosions.length - 1; i >= 0; i--) {
+    let explosion = explosions[i];
+    let elapsed = millis() - explosion.startTime;
+
+    if (elapsed < 500) {
+      // Check if less than 0.5 seconds has passed
+      textSize(24);
+      text("💥", explosion.x, explosion.y);
+    } else {
+      // Remove the explosion from the array after 0.5 seconds
+      explosions.splice(i, 1);
+    }
+  }
+
   for (const ant of ants) {
     ant.move();
     ant.display();
@@ -120,6 +144,8 @@ function draw() {
   }
 }
 
+/* OLD BLOOD SPLATTER CODE 
+
 function createSplatterBetween(ant1, ant2) {
   let splatterVertices = [];
   let x = (ant1.pos.x + ant2.pos.x) / 2;
@@ -147,6 +173,21 @@ function createSplatterBetween(ant1, ant2) {
   };
 
   splatters.push(splatter);
+}*/
+
+function createSplatterBetween(ant1, ant2) {
+  let x = (ant1.pos.x + ant2.pos.x) / 2;
+  let y = (ant1.pos.y + ant2.pos.y) / 2;
+
+  // Store the killMarker position
+  killMarkers.push({ x: x, y: y });
+
+  // Add explosion
+  explosions.push({
+    x: x,
+    y: y,
+    startTime: millis(), // Store the time when the explosion starts
+  });
 }
 
 function initiateCharging() {
@@ -403,6 +444,9 @@ function displayWinner() {
   textAlign(CENTER, CENTER);
   textSize(24);
   text(ants[0].name + " Wins! 🐜🏆", width / 2, height / 2);
+
+  // Clear the killMarkers array
+  killMarkers = [];
 }
 
 function shareGame() {
