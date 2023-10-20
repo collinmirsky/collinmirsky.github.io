@@ -13,11 +13,31 @@ const transitions = {
       y: random(height - 10),
     };
   },
-  diagonal: function (i) {
-    console.log("diagonal");
+  sriYantra: function (i) {
+    console.log("sriYantra");
+    let layers = 10;
+    let triangles = 1;
+    let layer = i % layers;
+    let triangle = floor(i / layers) % triangles;
+    let angleOffset = (TWO_PI / triangles) * triangle;
+    let angle =
+      angleOffset +
+      (TWO_PI / triangles) * (i / (squares.length / triangles)) +
+      frameCount * 0.02;
+    let radius = 30 + layer * 30;
     return {
-      x: (i % floor(width / 10)) * 10,
-      y: (i * 10) % height,
+      x: width / 2 + cos(angle) * radius,
+      y: height / 2 + sin(angle) * radius,
+    };
+  },
+  flowerOfLife: function (i) {
+    console.log("flowerOfLife");
+    let numPetals = 100;
+    let angle = (TWO_PI / numPetals) * (i % numPetals) + frameCount * 0.02;
+    let radius = 100 * (1 + floor(i / numPetals));
+    return {
+      x: width / 2 + cos(angle) * radius,
+      y: height / 2 + sin(angle) * radius,
     };
   },
   bounce: function (i) {
@@ -44,7 +64,7 @@ const transitions = {
   expandingSeedOfLife: function (i) {
     console.log("seedOfLife");
     let angle = map(i, 0, squares.length, 0, TWO_PI);
-    let radius = 50 + sin(frameCount * 0.05 + i * 0.3) * 50;
+    let radius = 150 + sin(frameCount * 0.05 + i * 0.3) * 50;
     return {
       x: width / 2 + cos(angle * 6) * radius,
       y: height / 2 + sin(angle * 6) * radius,
@@ -52,23 +72,12 @@ const transitions = {
   },
   fibonacciSpiral: function (i) {
     console.log("fibonacciSpiral");
-
     let goldenAngle = PI * (3 - sqrt(5)); // Golden angle
-
-    // Setting a growth factor for the spiral's radius
-    // This factor will determine the distance between points in the spiral
     let growthFactor = 8;
-
-    // Calculating the radial position
     let radius = growthFactor * sqrt(i);
-
-    // Calculating the angular position using golden angle
     let theta = goldenAngle * i;
-
-    // Convert polar coordinates (radius, theta) to Cartesian (x, y)
     let x = width / 2 + cos(theta) * radius;
     let y = height / 2 + sin(theta) * radius;
-
     return {
       x: x,
       y: y,

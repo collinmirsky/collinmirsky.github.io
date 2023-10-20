@@ -19,6 +19,9 @@ let defaultNames = [
 let playerInputs = [];
 let startButton;
 let shareButton;
+let isBattleStarted = false;
+let battleTime = 0;
+let timerInterval;
 
 let namesFromQueryString = getNamesFromQueryString();
 
@@ -361,6 +364,8 @@ function startGame() {
     input.attribute("disabled", "");
   }
   startButton.attribute("disabled", "");
+
+  startBattle();
 }
 
 function resetGame() {
@@ -389,13 +394,15 @@ function endGame() {
     input.removeAttribute("disabled");
   }
   startButton.removeAttribute("disabled");
+
+  endBattle();
 }
 
 function displayWinner() {
   fill(0);
   textAlign(CENTER, CENTER);
   textSize(24);
-  text(ants[0].name + " Wins! 🏆", width / 2, height / 2);
+  text(ants[0].name + " Wins! 🐜🏆", width / 2, height / 2);
 }
 
 function shareGame() {
@@ -435,6 +442,31 @@ function shareGame() {
   setTimeout(() => {
     popup.remove();
   }, 5000);
+}
+
+function startBattle() {
+  if (isBattleStarted) return; // Ensure we don't start multiple timers.
+
+  isBattleStarted = true;
+  battleTime = 0;
+  timerInterval = setInterval(updateTimer, 10); // Update every 10 milliseconds.
+}
+
+function endBattle() {
+  isBattleStarted = false;
+  clearInterval(timerInterval);
+}
+
+function updateTimer() {
+  if (!isBattleStarted) return;
+
+  battleTime += 10; // Increment by 10 because we're updating every 10 milliseconds.
+  const seconds = Math.floor(battleTime / 1000);
+  const milliseconds = battleTime % 1000;
+  const timerElement = document.getElementById("timer");
+  timerElement.textContent = `Battle length: ${seconds}.${String(
+    milliseconds
+  ).padStart(3, "0")} seconds`;
 }
 
 /*Written by Collin Mirsky 2023
