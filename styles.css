@@ -200,11 +200,6 @@ body {
   margin: 0 auto;
 }
 
-#additional-projects img {
-  max-width: 1200px;
-  padding: 20px 0px;
-}
-
 #additional-projects h2 {
   padding-bottom: 10px;
 }
@@ -563,10 +558,21 @@ body {
   /* Navigation bar adjustments */
   #navbar {
     padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.7); /* Black with 70% opacity */
+  }
+  #navbar #logo {
+    color: var(--white);
   }
 
   #navList {
     display: none; /* Hide nav list for smaller screens, assuming mobile navigation will take place */
+  }
+
+  #hero,
+  #projects,
+  .timeline,
+  #additional-projects {
+    max-width: 768px;
   }
 
   /* General content layout adjustments */
@@ -722,9 +728,9 @@ body {
     text-align: center;
   }
 
-  #blochGameCanvas {
-    width: 300px !important;
-    height: 450px !important;
+  #additional-projects .project-img-container {
+    padding: 0 0;
+    height: 100%;
   }
 
   /* Adjustments for project display in mobile view */

@@ -144,37 +144,6 @@ function draw() {
   }
 }
 
-/* OLD BLOOD SPLATTER CODE 
-
-function createSplatterBetween(ant1, ant2) {
-  let splatterVertices = [];
-  let x = (ant1.pos.x + ant2.pos.x) / 2;
-  let y = (ant1.pos.y + ant2.pos.y) / 2;
-
-  let detail = 0.1; // Adjust this value to control the smoothness of the splatter
-
-  beginShape();
-  for (let a = 0; a < TWO_PI; a += detail) {
-    let r = noise(x * 0.05, y * 0.05, a * 0.5) * 25; // Adjust the multiplier for size and detail
-    let sx = x + cos(a) * r;
-    let sy = y + sin(a) * r;
-    splatterVertices.push(createVector(sx, sy));
-    vertex(sx, sy);
-  }
-  endShape(CLOSE);
-
-  // Randomly generate a blood-like color
-  let splatterColor = color(random(100, 255), 0, 0, random(100, 255)); // Shades of red
-
-  // Create an object to represent the splatter with vertices and color
-  let splatter = {
-    vertices: splatterVertices,
-    color: splatterColor,
-  };
-
-  splatters.push(splatter);
-}*/
-
 function createSplatterBetween(ant1, ant2) {
   let x = (ant1.pos.x + ant2.pos.x) / 2;
   let y = (ant1.pos.y + ant2.pos.y) / 2;
@@ -333,7 +302,6 @@ class Ant {
     line(0, -9, 2, -15);
     line(0, -9, -2, -15);
 
-    // Legs with joints and walking motion
     // Legs with joints and walking motion
     for (let i = -1; i <= 1; i += 1) {
       let upperLegLength = 6;

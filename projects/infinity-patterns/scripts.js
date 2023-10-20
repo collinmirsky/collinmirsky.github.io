@@ -259,5 +259,24 @@ function setNewTargets() {
   }
 }
 
+// Console.log only on localhost //
+
+// Backup the original console.log function
+const originalConsoleLog = console.log;
+
+if (
+  window.location.hostname !== "localhost" &&
+  window.location.hostname !== "127.0.0.1"
+) {
+  // If not on localhost, disable console.log
+  console.log = function () {};
+} else {
+  // If on localhost, use the original console.log function
+  console.log = originalConsoleLog;
+}
+
+// Now you can use console.log as usual. It will only work on localhost.
+console.log("This will only log if you're on localhost!");
+
 /*Written by Collin Mirsky 2023
 collinmirsky.gitbhub.io*/
