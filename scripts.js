@@ -69,7 +69,7 @@ const blockGameSketch = (p) => {
     let cnv = p
       .createCanvas(400, 600)
       .parent("blockGame-container")
-      .id("blochGameCanvas")
+      .id("blockGameCanvas")
       .style("background-color", "rgba(0,0,0,0)");
   };
 

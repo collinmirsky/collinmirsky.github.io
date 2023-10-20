@@ -728,6 +728,11 @@ body {
     text-align: center;
   }
 
+  #blockGameCanvas {
+    width: 300px !important;
+    height: 450px !important;
+  }
+
   #additional-projects .project-img-container {
     padding: 0 0;
     height: 100%;
