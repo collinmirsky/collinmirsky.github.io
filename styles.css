@@ -125,6 +125,10 @@ body {
   display: none;
 }
 
+.flexParent:first-of-type {
+  margin-bottom: 50px;
+}
+
 /* ================================================
    MAIN CONTENT STYLES
    ================================================ */
@@ -150,6 +154,13 @@ body {
 #additional-projects {
   flex-direction: column;
 }
+#additional-projects img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  max-height: 600px;
+}
+
 /* Projects Section */
 #projects .content-section {
   display: flex;
@@ -178,7 +189,11 @@ body {
 #additional-projects .text-section .github-link {
   display: block;
   padding-top: 10px;
-  font-size: 0.75em;
+  font-size: 1em;
+}
+
+.github-link i {
+  margin-left: 5px;
 }
 
 #projects h1,
@@ -194,7 +209,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4rem 10rem;
+  padding: 2rem 10rem;
   margin-top: 5rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -731,11 +746,6 @@ body {
   #blockGameCanvas {
     width: 300px !important;
     height: 450px !important;
-  }
-
-  #additional-projects .project-img-container {
-    padding: 0 0;
-    height: 100%;
   }
 
   /* Adjustments for project display in mobile view */

@@ -10,7 +10,7 @@ canvas {
   border: 1px solid #ccc;
 }
 
-.container {
+#ant-farm-battle-container {
   display: flex;
   flex-direction: column;
   align-items: center;
