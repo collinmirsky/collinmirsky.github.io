@@ -2,14 +2,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   const navbar = document.getElementById("navbar");
 
-  window.addEventListener("scroll", function () {
+  function handleScroll() {
     if (window.scrollY > 0) {
       navbar.classList.add("scrolled");
     } else {
       navbar.classList.remove("scrolled");
     }
-  });
+  }
+
+  window.addEventListener("scroll", () => requestAnimationFrame(handleScroll));
 });
+
 
 // Main JS
 const heroH1 = document.querySelector("#hero h1");
@@ -24,54 +27,49 @@ var TxtType = function (el, toRotate, period) {
   this.isDeleting = false;
 };
 
-TxtType.prototype.tick = function () {
-  var i = this.loopNum % this.toRotate.length;
-  var fullTxt = this.toRotate[i];
-
-  if (this.isDeleting) {
-    this.txt = fullTxt.substring(0, this.txt.length - 1);
-  } else {
-    this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
-
-  this.el.innerHTML = '<span class="wrap">' + this.txt + "</span>";
-
-  var that = this;
-  var delta = 200 - Math.random() * 100;
-
-  if (this.isDeleting) {
-    delta /= 2;
-  }
-
-  if (!this.isDeleting && this.txt === fullTxt) {
-    delta = this.period;
-    this.isDeleting = true;
-  } else if (this.isDeleting && this.txt === "") {
+class Typewriter {
+  constructor(element, words, period = 2000) {
+    this.element = element;
+    this.words = words;
+    this.period = period;
+    this.index = 0;
+    this.txt = "";
     this.isDeleting = false;
-    this.loopNum++;
-    delta = 500;
+    this.type();
   }
 
-  setTimeout(function () {
-    that.tick();
-  }, delta);
-};
+  type() {
+    const currentWord = this.words[this.index % this.words.length];
+    this.txt = this.isDeleting
+      ? currentWord.substring(0, this.txt.length - 1)
+      : currentWord.substring(0, this.txt.length + 1);
 
-window.onload = function () {
-  var elements = document.getElementsByClassName("typewrite");
-  for (var i = 0; i < elements.length; i++) {
-    var toRotate = elements[i].getAttribute("data-type");
-    var period = elements[i].getAttribute("data-period");
-    if (toRotate) {
-      new TxtType(elements[i], JSON.parse(toRotate), period);
+    this.element.innerHTML = `<span class="wrap">${this.txt}</span>`;
+
+    let delay = this.isDeleting ? 50 : 100;
+
+    if (!this.isDeleting && this.txt === currentWord) {
+      delay = this.period;
+      this.isDeleting = true;
+    } else if (this.isDeleting && this.txt === "") {
+      this.isDeleting = false;
+      this.index++;
+      delay = 500;
     }
+
+    setTimeout(() => this.type(), delay);
   }
-  // INJECT CSS
-  var css = document.createElement("style");
-  css.type = "text/css";
-  css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-  document.body.appendChild(css);
-};
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const typeElement = document.querySelector(".typewrite");
+  const words = JSON.parse(typeElement.getAttribute("data-type"));
+  const period = typeElement.getAttribute("data-period");
+
+  if (words) {
+    new Typewriter(typeElement, words, period);
+  }
+});
 
 // Block Game JS
 const blockGameSketch = (p) => {

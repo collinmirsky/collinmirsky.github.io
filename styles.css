@@ -247,6 +247,7 @@ body {
   display: inline-block;
   position: relative;
   min-height: 1.5em;
+  flex-grow: 1;
 }
 
 #hero h1::after {
@@ -336,7 +337,7 @@ body {
   width: auto;
   border-radius: 50%;
   object-fit: cover;
-  max-height: 700px;
+  max-height: 400px;
 }
 
 .timeline {
@@ -757,8 +758,9 @@ body {
 
   /* Adjust image display for mobile view */
   .image-section img {
-    max-width: 400px;
-    width: 100%;
+    /*max-width: 400px;
+    width: 100%;*/
+    display:none;
   }
 
   /* Footer content adjustments for mobile */
